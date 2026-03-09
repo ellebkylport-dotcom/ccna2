@@ -236,7 +236,7 @@ ephone-dn 2
 ephone-dn 3
   number 9133
 ephone-dn 4
-  number 9144
+  number 9168
 ephone-dn 5
   number 9155
 ephone-dn 6
@@ -246,18 +246,18 @@ ephone-dn 7
 ephone-dn 8
   number 9188
  ephone-dn 9
-   number 9199
+   number 9136
 ephone-dn 10
- number 9198
+ number 9189
 Ephone 1
   Mac-address  e8ed.f3a9.8feb
   type 8945
-  button 1:8 2:7 3:6 4:5
+  button 1:8 2:7 3:6 4:9
   restart
 Ephone 2
   Mac-address  b4e9.b0b0.487b
   type 8945
-  button 1:4 2:3 3:2 4:1
+  button 1:1 2:2 3:3 4:4
   restart  
 end
 
@@ -288,10 +288,10 @@ configure terminal
  destination-pattern 11..
  session target ipv4:10.11.100.8
  codec g711ULAW
-  !dial-peer voice 12 Voip
-  !destination-pattern 12..
-  !session target ipv4:10.12.100.8
-  !codec g711ULAW
+  dial-peer voice 12 Voip
+  destination-pattern 12..
+  session target ipv4:10.12.100.8
+  codec g711ULAW
 dial-peer voice 21 Voip
  destination-pattern 21..
  session target ipv4:10.21.100.8
@@ -348,10 +348,10 @@ dial-peer voice 82 Voip
  destination-pattern 82..
  session target ipv4:10.82.100.8
  codec g711ULAW
-dial-peer voice 91 Voip
- destination-pattern 91..
- session target ipv4:10.91.100.8
- codec g711ULAW
+!dial-peer voice 91 Voip
+ !destination-pattern 91..
+ !session target ipv4:10.91.100.8
+ !codec g711ULAW
 dial-peer voice 92 Voip
  destination-pattern 92..
  session target ipv4:10.92.100.8
@@ -672,6 +672,7 @@ exit
           
 sip-ua
 sip-server ipv4:192.168.k.1
+
 
 
 
