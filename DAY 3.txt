@@ -1,0 +1,157 @@
+1. a:c::
+2. ::
+3. fe80::a"0:0:f
+4. 2002:6500:0:3000::
+5. ::1
+6.ff00::beef:a00a:aa0:0
+
+
+Switch#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname COREbaba-31
+COREbaba-31(config)#enable secret pass
+COREbaba-31(config)#service password-encryption
+COREbaba-31(config)#no logging console
+COREbaba-31(config)#no ip domain-lookup
+COREbaba-31(config)#line console 0
+COREbaba-31(config-line)#password pass
+COREbaba-31(config-line)#login 
+COREbaba-31(config-line)#exec-timeout 0 0
+COREbaba-31(config-line)#line vty 0 14
+COREbaba-31(config-line)#password pass
+COREbaba-31(config-line)#login
+COREbaba-31(config-line)#exec-timeout 0 0
+COREbaba-31(config-line)#
+COREbaba-31#
+COREbaba-31#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+0 bytes copied in 1.384 secs (0 bytes/sec)
+COREbaba-31#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+COREbaba-31(config)#end
+COREbaba-31#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+0 bytes copied in 0.571 secs (0 bytes/sec)
+COREbaba-31#conf t        
+Enter configuration commands, one per line.  End with CNTL/Z.
+COREbaba-31(config)#sdm prefer dual-ipv4-and-ipv6
+% Incomplete command.
+
+COREbaba-31(config)#sdm prefer dual-ipv4-and-ipv6 
+% Incomplete command.
+
+COREbaba-31(config)#sdm prefer dual-ipv4-and-ipv6 routing 
+Changes to the running SDM preferences have been stored, but cannot take effect 
+until the next reload.
+Use 'show sdm prefer' to see what SDM preference is currently active.
+COREbaba-31(config)#end
+COREbaba-31#wr
+Building configuration...
+[OK]
+COREbaba-31#       
+COREbaba-31#sh sdm prefer dual-ipv4-and-ipv6 routing 
+ "desktop IPv4 and IPv6 routing" template:
+ The selected template optimizes the resources in
+ the switch to support this level of features for
+ 8 routed interfaces and 1024 VLANs. 
+
+  number of unicast mac addresses:                  1.5K
+  number of IPv4 IGMP groups + multicast routes:    1K
+  number of IPv4 unicast routes:                    2.75K
+    number of directly-connected IPv4 hosts:        1.5K
+    number of indirect IPv4 routes:                 1.25K
+  number of IPv6 multicast groups:                  1.125k
+  number of directly-connected IPv6 addresses:      1.5K
+  number of indirect IPv6 unicast routes:           1.25K
+  number of IPv4 policy based routing aces:         0.25K
+  number of IPv4/MAC qos aces:                      0.5K
+  number of IPv4/MAC security aces:                 0.5K
+  number of IPv6 policy based routing aces:         0.25K
+  number of IPv6 qos aces:                          0.625k
+  number of IPv6 security aces:                     0.5K
+
+TASK 2:
+
+conf t
+ip routing
+ipv6 unicast-routing
+int vlan 1
+no shut
+ip add 10.31.1.4 255.255.255.0
+ipv6 enable
+ipv6 address cafe:cafe:cafe:cafe::eeee/64
+end
+
+
+
+HOW TO GET REAL WORLD IPV6 EXPERIENCE:
+
+2001:fd80:2f10:1030::/64 = NETB IPV6 SUBNET:
+
+dicide subnet
+
+
+
+IPV6 DHCP SERVER FOR DATACENTER:
+
+config t
+int vlan 110
+ipv6 enable
+ipv6 add fafa:fafa:fafa:fafa:0040::1/74
+ipv6 dhcp server 1024OFFICE
+ipv6 nd managed-config-flag 
+ipv6 nd other-config-flag
+no shut
+ipv6 dhcp pool 1024OFFICE
+ address prefix fafa:fafa:fafa:fafa:0040::/74
+int fa0/5
+ switchport access vlan 110
+int fa0/7
+ switchport access vlan 110
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
